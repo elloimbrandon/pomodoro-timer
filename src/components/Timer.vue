@@ -12,33 +12,57 @@
 
 <script setup>
 import { useTimerStore } from '@/stores/pomoTimer'
-import { computed, onMounted, onUnmounted } from 'vue'
+import { useRestStore } from '@/stores/pomoRest'
+import { computed, onMounted, onUnmounted, watch, ref } from 'vue'
 
-const store = useTimerStore()
+const pomoStore = useTimerStore()
+const restStore = useRestStore()
+
+const store = ref(pomoStore)
 let intervalId
 
-// Format time from seconds to MM:SS
+// Watch for timer completion and swap stores
+watch(() => pomoStore.finished, (newValue) => {
+    if (newValue) {
+        clearInterval(intervalId)
+        store.value = restStore
+        restStore.resetTimer()
+        // Ensure isRunning is false when switching
+        restStore.pauseTimer()
+    }
+})
+
+watch(() => restStore.finished, (newValue) => {
+    if (newValue) {
+        clearInterval(intervalId)
+        store.value = pomoStore
+        pomoStore.resetTimer()
+        // Ensure isRunning is false when switching
+        pomoStore.pauseTimer()
+    }
+})
+
 const formattedTime = computed(() => {
-    const minutes = Math.floor(store.time / 60)
-    const seconds = store.time % 60
+    const minutes = Math.floor(store.value.time / 60)
+    const seconds = store.value.time % 60
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
 })
 
 function handleStartPause() {
-    if (store.isRunning) {
-        store.pauseTimer()
+    if (store.value.isRunning) {
+        store.value.pauseTimer()
         clearInterval(intervalId)
     } else {
-        store.startTimer()
+        store.value.startTimer()
         intervalId = setInterval(() => {
-            store.decrementTimer()
+            store.value.decrementTimer()
         }, 1000)
     }
 }
 
 function handleReset() {
     clearInterval(intervalId)
-    store.resetTimer()
+    store.value.resetTimer()
 }
 
 // Clean up interval when component is destroyed
