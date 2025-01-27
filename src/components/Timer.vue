@@ -6,6 +6,7 @@
                 {{ store.isRunning ? 'Pause' : 'Start' }}
             </button>
             <button @click="handleReset">Reset</button>
+            <button @click="handleBreak">Break</button>
         </div>
     </div>
 </template>
@@ -27,7 +28,6 @@ watch(() => pomoStore.finished, (newValue) => {
         clearInterval(intervalId)
         store.value = restStore
         restStore.resetTimer()
-        // Ensure isRunning is false when switching
         restStore.pauseTimer()
     }
 })
@@ -37,7 +37,6 @@ watch(() => restStore.finished, (newValue) => {
         clearInterval(intervalId)
         store.value = pomoStore
         pomoStore.resetTimer()
-        // Ensure isRunning is false when switching
         pomoStore.pauseTimer()
     }
 })
@@ -63,6 +62,13 @@ function handleStartPause() {
 function handleReset() {
     clearInterval(intervalId)
     store.value.resetTimer()
+}
+
+function handleBreak() {
+    clearInterval(intervalId)
+    store.value = restStore
+    restStore.resetTimer()
+    restStore.pauseTimer()
 }
 
 // Clean up interval when component is destroyed

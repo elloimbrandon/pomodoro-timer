@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useRestStore = defineStore('rest', () => {
-    const title = ref('Rest Timer');
+    const title = ref('Break Timer');
     // const time = ref(300); // 5 minutes in seconds
     const time = ref(15); // 10 seconds
     const finished = ref(false);

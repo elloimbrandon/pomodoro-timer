@@ -1,3 +1,10 @@
+<template>
+  <main>
+    <h1>{{ store.title }}</h1>
+    <Timer @store-change="handleStoreChange"/>
+  </main>
+</template>
+
 <script setup>
 import Timer from '@/components/Timer.vue'
 import { useTimerStore } from '@/stores/pomoTimer'
@@ -21,11 +28,9 @@ watch(() => restStore.finished, (newValue) => {
         store.value = pomoStore
     }
 })
-</script>
 
-<template>
-  <main>
-    <h1>{{ store.title }}</h1>
-    <Timer/>
-  </main>
-</template>
+function handleStoreChange(newStore) {
+    store.value = newStore
+}
+
+</script>
