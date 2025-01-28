@@ -3,10 +3,12 @@
         <span class="time-value">{{ formattedTime }}</span>
         <div class="controls">
             <button @click="handleStartPause">
-                {{ store.isRunning ? 'Pause' : 'Start' }}
+                {{ activeStore.isRunning ? 'Pause' : 'Start' }}
             </button>
             <button @click="handleReset">Reset</button>
-            <button @click="handleBreak">Break</button>
+            <button @click="handleModeSwitch" class="mode-button">
+                {{ isPomoStore ? 'Break' : 'Work' }}
+            </button>
         </div>
     </div>
 </template>
@@ -14,64 +16,83 @@
 <script setup>
 import { useTimerStore } from '@/stores/pomoTimer'
 import { useRestStore } from '@/stores/pomoRest'
-import { computed, onMounted, onUnmounted, watch, ref } from 'vue'
+import { computed, onUnmounted, watch, shallowRef } from 'vue'
+
+const emit = defineEmits(['store-change'])
 
 const pomoStore = useTimerStore()
 const restStore = useRestStore()
+const activeStore = shallowRef(pomoStore)
 
-const store = ref(pomoStore)
-let intervalId
-
-// Watch for timer completion and swap stores
-watch(() => pomoStore.finished, (newValue) => {
-    if (newValue) {
-        clearInterval(intervalId)
-        store.value = restStore
-        restStore.resetTimer()
-        restStore.pauseTimer()
-    }
-})
-
-watch(() => restStore.finished, (newValue) => {
-    if (newValue) {
-        clearInterval(intervalId)
-        store.value = pomoStore
-        pomoStore.resetTimer()
-        pomoStore.pauseTimer()
-    }
-})
+const isPomoStore = computed(() => activeStore.value === pomoStore)
 
 const formattedTime = computed(() => {
-    const minutes = Math.floor(store.value.time / 60)
-    const seconds = store.value.time % 60
+    const minutes = Math.floor(activeStore.value.time / 60)
+    const seconds = activeStore.value.time % 60
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
 })
 
+let intervalId
+
 function handleStartPause() {
-    if (store.value.isRunning) {
-        store.value.pauseTimer()
+    if (activeStore.value.isRunning) {
+        activeStore.value.pauseTimer()
         clearInterval(intervalId)
     } else {
-        store.value.startTimer()
+        activeStore.value.startTimer()
         intervalId = setInterval(() => {
-            store.value.decrementTimer()
+            activeStore.value.decrementTimer()
         }, 1000)
     }
 }
 
 function handleReset() {
     clearInterval(intervalId)
-    store.value.resetTimer()
+    activeStore.value.resetTimer()
+}
+
+function handleModeSwitch() {
+    if (isPomoStore.value) {
+        handleBreak()
+    } else {
+        handleWork()
+    }
 }
 
 function handleBreak() {
     clearInterval(intervalId)
-    store.value = restStore
+    pomoStore.finished = false
+    activeStore.value = restStore
+    emit('store-change', restStore)
     restStore.resetTimer()
-    restStore.pauseTimer()
 }
 
-// Clean up interval when component is destroyed
+function handleWork() {
+    clearInterval(intervalId)
+    restStore.finished = false
+    activeStore.value = pomoStore
+    emit('store-change', pomoStore)
+    pomoStore.resetTimer()
+}
+
+watch(() => pomoStore.finished, (newValue) => {
+    if (newValue) {
+        clearInterval(intervalId)
+        activeStore.value = restStore
+        emit('store-change', restStore)
+        restStore.resetTimer()
+    }
+})
+
+watch(() => restStore.finished, (newValue) => {
+    if (newValue) {
+        clearInterval(intervalId)
+        activeStore.value = pomoStore
+        emit('store-change', pomoStore)
+        pomoStore.resetTimer()
+    }
+})
+
 onUnmounted(() => {
     clearInterval(intervalId)
 })
