@@ -18,6 +18,7 @@ import { useTimerStore } from '@/stores/pomoTimer'
 import { useRestStore } from '@/stores/pomoRest'
 import { computed, onUnmounted, watch, shallowRef } from 'vue'
 
+// EMIT CHANGES
 const emit = defineEmits(['store-change'])
 
 const pomoStore = useTimerStore()
