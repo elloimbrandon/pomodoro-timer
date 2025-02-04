@@ -1,6 +1,7 @@
 <template>
   <main>
-    <h1>{{ store.title }}</h1>
+    <h1>Pomodoro Timer</h1>
+    <h2>{{ store.title }}</h2>
     <Timer @store-change="handleStoreChange"/>
   </main>
 </template>

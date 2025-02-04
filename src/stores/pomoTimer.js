@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useTimerStore = defineStore('timer', () => {
-    const title = ref('Pomodoro Timer');
+    const title = ref('Get to work!');
     // const time = ref(1500); // 25 minutes in seconds
     const time = ref(10); // 10 seconds
 
