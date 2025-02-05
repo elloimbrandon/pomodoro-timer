@@ -19,7 +19,7 @@ const restStore = useRestStore()
 
 const store = ref(pomoStore)
 
-// Watch for timer completion and swap stores
+// After timer is complete we swap the stores
 watch(() => pomoStore.finished, (newValue) => {
     if (newValue) {
         store.value = restStore

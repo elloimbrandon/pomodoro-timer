@@ -3,11 +3,11 @@ import { ref } from 'vue'
 
 export const useTimerStore = defineStore('timer', () => {
     const title = ref('Get to work!');
-    const time = ref(1500); // 25 minutes in seconds
+    const time = ref(1500);
     const finished = ref(false);
     const isRunning = ref(false);
     
-    // Methods
+    // !! Methods
     function startTimer() {
         isRunning.value = true
     }
