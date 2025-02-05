@@ -1,12 +1,12 @@
 <template>
-    <div class="flex flex-col items-center space-y-8 p-6 bg-white rounded-2xl shadow-xl w-80">
+    <div class="flex flex-col items-center space-y-8 p-12 bg-white rounded-2xl shadow-xl w-full">
         <span class="time-value text-6xl font-mono font-bold text-indigo-900">
             {{ formattedTime }}
         </span>
         <div class="controls flex gap-4">
             <button 
                 @click="handleStartPause"
-                class="px-6 py-3 rounded-lg font-semibold transition-all"
+                class="px-6 py-3 rounded-lg font-semibold transition-all w-24"
                 :class="activeStore.isRunning 
                     ? 'bg-red-500 hover:bg-red-600 text-white' 
                     : 'bg-green-500 hover:bg-green-600 text-white'"
@@ -15,13 +15,13 @@
             </button>
             <button 
                 @click="handleReset"
-                class="px-6 py-3 bg-gray-200 hover:bg-gray-300 rounded-lg font-semibold transition-all"
+                class="px-6 py-3 bg-gray-200 hover:bg-gray-300 rounded-lg font-semibold transition-all w-24"
             >
                 Reset
             </button>
             <button 
                 @click="handleModeSwitch" 
-                class="px-6 py-3 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg font-semibold transition-all"
+                class="px-6 py-3 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg font-semibold transition-all md:w-24"
             >
                 {{ isPomoStore ? 'Break' : 'Work' }}
             </button>
