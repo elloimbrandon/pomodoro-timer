@@ -1,8 +1,10 @@
 <template>
-  <main>
-    <h1>Pomodoro Timer</h1>
-    <h2>{{ store.title }}</h2>
-    <Timer @store-change="handleStoreChange"/>
+  <main class="antialiased max-w-[1200px] m-4 mx-auto min-h-[50vh] bg-gradient-to-br from-indigo-100 to-purple-100 rounded-xl shadow-lg flex items-center justify-center">
+    <section class="flex flex-col items-center justify-center space-y-6">
+      <h1 class="text-4xl font-bold text-indigo-900">Pomodoro Timer</h1>
+      <h2 class="text-xl text-indigo-700 font-medium">{{ store.title }}</h2>
+      <Timer @store-change="handleStoreChange"/>
+    </section>
   </main>
 </template>
 

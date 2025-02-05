@@ -14,6 +14,6 @@ nav {
   display: none;
 }
 
-#app {
-    @apply flex flex-col max-w-screen-md space-x-4 space-y-4;
-}
+/* #app {
+    @apply antialiased max-w-[1200px] mx-auto;
+} */

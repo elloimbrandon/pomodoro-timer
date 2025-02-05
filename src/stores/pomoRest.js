@@ -3,8 +3,7 @@ import { ref } from 'vue'
 
 export const useRestStore = defineStore('rest', () => {
     const title = ref('Let\'s take a Break');
-    // const time = ref(300); // 5 minutes in seconds
-    const time = ref(15); // 10 seconds
+    const time = ref(300); // 5 minutes in seconds
     const finished = ref(false);
     const isRunning = ref(false);
     
@@ -18,8 +17,7 @@ export const useRestStore = defineStore('rest', () => {
     }
     
     function resetTimer() {
-        // time.value = 1500
-        time.value = 15 // 10 seconds
+        time.value = 300
         isRunning.value = false
     }
     

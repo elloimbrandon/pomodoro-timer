@@ -3,9 +3,7 @@ import { ref } from 'vue'
 
 export const useTimerStore = defineStore('timer', () => {
     const title = ref('Get to work!');
-    // const time = ref(1500); // 25 minutes in seconds
-    const time = ref(10); // 10 seconds
-
+    const time = ref(1500); // 25 minutes in seconds
     const finished = ref(false);
     const isRunning = ref(false);
     
@@ -19,8 +17,7 @@ export const useTimerStore = defineStore('timer', () => {
     }
     
     function resetTimer() {
-        // time.value = 1500
-        time.value = 10 // 10 seconds
+        time.value = 1500
         isRunning.value = false
     }
     
