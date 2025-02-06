@@ -1,6 +1,6 @@
 # Pomodoro Timer ⏳  
 
-A simple Pomodoro timer built with Vue.js, Vite, and Tailwind CSS.  
+A simple Pomodoro timer built with Vue.js, Vite, and Tailwind CSS. Built this for personal use!
 
 ## Features
 - Start, pause, and reset functionality  
