@@ -2,6 +2,8 @@
 
 A simple Pomodoro timer built with Vue.js, Vite, and Tailwind CSS. Built this for personal use!
 
+Live Demo: https://pomodoro-timer-nu-smoky.vercel.app/
+
 ## Features
 - Start, pause, and reset functionality  
 - Responsive and minimalist design  
