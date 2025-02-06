@@ -2,8 +2,7 @@
 
 A simple Pomodoro timer built with Vue.js, Vite, and Tailwind CSS.  
 
-## Features  
-- Adjustable Pomodoro and break durations  
+## Features
 - Start, pause, and reset functionality  
 - Responsive and minimalist design  
 
