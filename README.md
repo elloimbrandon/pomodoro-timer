@@ -1,36 +1,26 @@
-# pomodoro-timer
+# Pomodoro Timer ⏳  
 
-This template should help get you started developing with Vue 3 in Vite.
+A simple Pomodoro timer built with Vue.js, Vite, and Tailwind CSS. Built this for personal use!
 
-## Recommended IDE Setup
+Live Demo: https://pomodoro-timer-nu-smoky.vercel.app/
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Features
+- Start, pause, and reset functionality  
+- Responsive and minimalist design  
 
-## Customize configuration
+## Tech Stack  
+- **Vue.js** – Reactive UI  
+- **Vite** – Fast development and build process  
+- **Tailwind CSS** – Modern styling  
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+## Getting Started  
+Clone the repo and install dependencies:  
+```bash
+git clone https://github.com/yourusername/pomodoro-timer.git
+cd pomodoro-timer
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
 ```
+![Screenshot 2025-02-06 at 12 07 26 PM](https://github.com/user-attachments/assets/3b0b967c-845c-4920-a2fe-a8cdb3fc30a9)
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
-# pomodoro-timer
+![Screenshot 2025-02-06 at 12 07 43 PM](https://github.com/user-attachments/assets/51322d5c-f3b0-4240-b43b-e7552eea8e3f)
