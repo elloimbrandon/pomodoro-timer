@@ -13,3 +13,7 @@
 nav {
   display: none;
 }
+
+html {
+  height: 100vh;
+}
