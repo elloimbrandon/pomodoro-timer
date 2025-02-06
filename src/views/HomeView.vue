@@ -1,8 +1,8 @@
 <template>
   <main class="antialiased w-full h-screen md:w-[800px] md:mx-auto flex items-center justify-center">
-    <section class="flex flex-col items-center justify-center space-y-6 bg-gradient-to-br mx-6 p-12 from-indigo-100 to-purple-100 rounded-xl shadow-lg ">
-      <h1 class="text-3xl md:text-4xl font-bold text-indigo-900">Pomodoro Timer</h1>
-      <h2 class="text-xl text-indigo-700 font-medium">{{ store.title }}</h2>
+    <section class="flex flex-col items-center justify-center space-y-8 bg-gradient-to-br mx-6 p-12 from-sky-100 to-teal-50 rounded-xl shadow-lg">
+      <h1 class="text-3xl md:text-4xl font-bold text-sky-900">Pomodoro Timer</h1>
+      <h2 class="text-2xl md:text-3xl text-sky-700 font-medium">{{ store.title }}</h2>
       <Timer @store-change="handleStoreChange"/>
     </section>
   </main>
